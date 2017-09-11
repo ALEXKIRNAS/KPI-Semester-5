@@ -1,14 +1,9 @@
 (DEFUN SIGN_CHAR
        (NUMBER)
-       (if (= (SIGNUM NUMBER) -1) 
-           '- 
-           '+
+       (COND ((= (SIGNUM NUMBER) -1) '-)
+             (T '+)
         )
 )
 
-(DEFUN DESCRIBE_NUMBER 
-       (NUMBER)
-       (LIST (SIGN_CHAR NUMBER) (ABS NUMBER) (ROUND NUMBER))
-)
 (print (DESCRIBE_NUMBER 10.36))
 (print (DESCRIBE_NUMBER -11.56))

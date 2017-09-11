@@ -15,9 +15,8 @@
 
 (DEFUN SIGN_CHAR
        (NUMBER)
-       (if (= (SIGNUM NUMBER) -1) 
-           '- 
-           '+
+       (COND ((= (SIGNUM NUMBER) -1) '-)
+             (T '+)
         )
 )
 
@@ -27,5 +26,3 @@
 )
 (print (DESCRIBE_NUMBER 10.36))
 (print (DESCRIBE_NUMBER -11.56))
-
-
