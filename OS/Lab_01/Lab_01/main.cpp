@@ -60,7 +60,7 @@ bool test_dealloc() {
 	for (int i = 0; i < 100; i++) {
 		arr[i] = (short)i;
 	}
-
+	
 	mem_free(pool);
 
 	return true;
@@ -88,7 +88,7 @@ bool test_performance() {
 
 	void* pool = mem_alloc(sizeof(short) * 10);
 	mem_free(pool);
-	void* pool = mem_alloc(sizeof(short) * 20);
+	pool = mem_alloc(sizeof(short) * 20);
 	mem_free(pool);
 
 	for (int i = 0; i < 10; i++) {
@@ -105,6 +105,8 @@ int main(void) {
 	printf("Allocation test.... %s\n", (test_alloc() ? "Ok" : "Failed"));
 	printf("Deallocation test.... %s\n", (test_dealloc() ? "Ok" : "Failed"));
 	printf("Complex performance test.... %s\n", (test_performance() ? "Ok" : "Failed"));
+	printf("Dumping info...\n");
+	GLOBAL_MEMORY_ALLOCATOR.mem_dump();
 	printf("Ending programm....");
 	system("pause");
 }

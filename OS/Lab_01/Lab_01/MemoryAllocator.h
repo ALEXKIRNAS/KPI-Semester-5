@@ -22,4 +22,5 @@ public:
 	void* allocate(size_t size);
 	void deallocate(void* pointer);
 	void* reallocate(void* pointer, size_t size);
+	void mem_dump(void);
 };
