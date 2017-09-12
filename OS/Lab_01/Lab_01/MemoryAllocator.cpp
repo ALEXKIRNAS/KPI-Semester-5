@@ -1,4 +1,11 @@
 #include "MemoryAllocator.h"
+#define DEBUG
+
+#ifdef DEBUG
+#include <iostream>
+using std::cout;
+#endif // DEBUG
+
 
 MemoryAllocator::MemoryAllocator(size_t size) {
 	if (size < sizeof(MemoryHeader)) {
@@ -67,6 +74,31 @@ void* MemoryAllocator::allocate(size_t size) {
 	_sizes_map[location] = size;
 	_allocated_memory += size;
 
+#ifdef DEBUG
+	printf("Allocated %d in %p", size, location);
+	std::cout << "Sizes map:\n";
+	for (auto iter = _sizes_map.begin();
+		iter < _sizes_map.end();
+		iter++) {
+		printf("%p - %d\n", iter->first, iter->second);
+	}
+
+	std::cout << "Free map:\n";
+	for (auto iter = _free_map.begin();
+		iter < _free_map.end();
+		iter++) {
+		cout << iter->first << " :";
+		for (auto v_iter = iter->second.begin();
+			v_iter < iter->second.end();
+			v_iter++) {
+			printf(" %p", v_iter);
+		}
+		printf("\n");
+	}
+	
+	system("pause");
+#endif // !DEBUG
+
 	return (void *)(location + sizeof(MemoryHeader));
 }
 
@@ -106,10 +138,10 @@ void MemoryAllocator::deallocate(void* pointer) {
 	}
 
 	auto iter = _sizes_map.find(loc_pointer);
-	_allocated_memory -= iter->second;
-	_sizes_map.erase(iter);
 
 	MemoryHeader* loc_header = (MemoryHeader*)loc_pointer;
+	loc_header->header.isFree = true;
+
 	if (loc_header->header.NextBlock && loc_header->header.NextBlock->header.isFree) {
 		auto next_iter = _sizes_map.find((char *)loc_header->header.NextBlock);
 		_merge(loc_header, loc_header->header.NextBlock);
@@ -119,11 +151,42 @@ void MemoryAllocator::deallocate(void* pointer) {
 		auto next_iter = _sizes_map.find((char *)loc_header->header.NextBlock);
 		_merge(loc_header->header.PrevBlock, loc_header);
 	}
+
+#ifdef DEBUG
+	printf("Deallocated %d in %p", iter->second, loc_pointer);
+	std::cout << "Sizes map:\n";
+	for (auto iter = _sizes_map.begin();
+		iter < _sizes_map.end();
+		iter++) {
+		printf("%p - %d\n", iter->first, iter->second);
+	}
+
+	std::cout << "Free map:\n";
+	for (auto iter = _free_map.begin();
+		iter < _free_map.end();
+		iter++) {
+		cout << iter->first << " :";
+		for (auto v_iter = iter->second.begin();
+			v_iter < iter->second.end();
+			v_iter++) {
+			printf(" %p", v_iter);
+		}
+		printf("\n");
+	}
+
+	system("pause");
+#endif // !DEBUG
 }
 
 
 void* MemoryAllocator::reallocate(void* pointer, size_t size) {
+
+	char* loc_pointer = (char *)pointer - sizeof(MemoryHeader);
+	if (_sizes_map.find(loc_pointer) == _sizes_map.end()) {
+		return nullptr;
+	}
+
 	void* new_memory = allocate(size);
-	memcpy(new_memory, pointer, size);
+	memcpy(new_memory, pointer, std::min(size, _sizes_map[loc_pointer]));
 	deallocate(pointer);
 }

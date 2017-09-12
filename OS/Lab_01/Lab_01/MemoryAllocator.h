@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <cstdio>
+#include <algorithm>
 #include "MemoryHeader.h"
 
 using std::map;
