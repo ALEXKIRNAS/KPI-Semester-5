@@ -1,4 +1,0 @@
-﻿  MemoryAllocator.cpp
-c:\code\kpi-semester-5\os\lab_01\lab_01\memoryallocator.cpp(206): warning C4715: 'MemoryAllocator::reallocate': not all control paths return a value
-  Lab_01.vcxproj -> C:\CODE\KPI-Semester-5\OS\Lab_01\Debug\Lab_01.exe
-  Lab_01.vcxproj -> C:\CODE\KPI-Semester-5\OS\Lab_01\Debug\Lab_01.pdb (Full PDB)
