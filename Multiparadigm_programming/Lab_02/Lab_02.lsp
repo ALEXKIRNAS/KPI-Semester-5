@@ -94,8 +94,10 @@
 (print (merge_LISTs '(1 2 3) '(1 2 3 4 5)))
 
 ;TASK #5
-(DEFUN rotate(l n)
-  (APPEND (NTHCDR n l) (butlast l (- (LENGTH l) n))))
+(DEFUN rotate
+      (l n)
+      (APPEND (NTHCDR n l) (butlast l (- (LENGTH l) n)))
+)
 
 
 (DEFUN rotate_all 
@@ -108,9 +110,10 @@
 )
 
 
-(DEFUN rotate_all_wraper 
+(DEFUN rotate_all_wrapper 
         (lst)
-        (rotate_all lst 0 nil))
+        (rotate_all lst 0 nil)
 )
+
 
 (print (rotate_all_wrapper '((a b) (c d))))
