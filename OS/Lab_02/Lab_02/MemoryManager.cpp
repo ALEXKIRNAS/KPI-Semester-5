@@ -63,13 +63,15 @@ bool MemoryManager::check_page(size_t application_id, size_t page_index) {
  */
 void MemoryManager::find_page_to_replace() {
 	for (; clock_arrow_index < _physical_pages_count; clock_arrow_index++) {
-		if (pages_queue[clock_arrow_index]->last_use_session_id < _time_to_live_of_operation) {
+		if (session_id - pages_queue[clock_arrow_index]->last_use_session_id > _time_to_live_of_operation) {
+			pages_queue[clock_arrow_index]->last_use_session_id = session_id;
 			return;
 		}
 	}
 
 	for (clock_arrow_index = 0; clock_arrow_index < _physical_pages_count; clock_arrow_index++) {
-		if (pages_queue[clock_arrow_index]->last_use_session_id < _time_to_live_of_operation) {
+		if (session_id - pages_queue[clock_arrow_index]->last_use_session_id > _time_to_live_of_operation) {
+			pages_queue[clock_arrow_index]->last_use_session_id = session_id;
 			return;
 		}
 	}

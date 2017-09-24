@@ -1,0 +1,132 @@
+2017-09-24.22:18:34 -       INFO - Start application (id: 0) with new 8 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 1) with new 4 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 2) with new 8 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 3) with new 4 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 4) with new 9 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 5) with new 1 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 6) with new 4 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 7) with new 10 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 8) with new 10 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 9) with new 10 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 10) with new 5 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 11) with new 2 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 12) with new 9 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 13) with new 6 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 14) with new 8 pages
+2017-09-24.22:18:34 -       INFO - Start application (id: 15) with new 7 pages
+2017-09-24.22:18:34 -       INFO - Application (id: 4) requested page 0x180(index - 3)
+2017-09-24.22:18:34 -       INFO - Application`s (id: 4) page 0x180(index - 3) already in memory!
+2017-09-24.22:18:35 -       INFO - Application (id: 9) requested page 0x200(index - 4)
+2017-09-24.22:18:35 -       INFO - Application`s (id: 9) page 0x200(index - 4) not in memory!
+2017-09-24.22:18:35 -       INFO - Page in 0x0(index - 0) upload  from memory to swap
+2017-09-24.22:18:35 -       INFO - Page in 0xf80(index - 0) load from swap to memory
+2017-09-24.22:18:36 -       INFO - Application (id: 9) requested page 0x480(index - 9)
+2017-09-24.22:18:36 -       INFO - Application`s (id: 9) page 0x480(index - 9) not in memory!
+2017-09-24.22:18:36 -       INFO - Page in 0x80(index - 1) upload  from memory to swap
+2017-09-24.22:18:36 -       INFO - Page in 0xd00(index - 1) load from swap to memory
+2017-09-24.22:18:38 -       INFO - Application (id: 6) requested page 0x80(index - 1)
+2017-09-24.22:18:38 -       INFO - Application`s (id: 6) page 0x80(index - 1) not in memory!
+2017-09-24.22:18:38 -       INFO - Page in 0x100(index - 2) upload  from memory to swap
+2017-09-24.22:18:38 -       INFO - Page in 0x200(index - 2) load from swap to memory
+2017-09-24.22:19:00 -       INFO - Application (id: 14) requested page 0x300(index - 6)
+2017-09-24.22:19:00 -       INFO - Application`s (id: 14) page 0x300(index - 6) not in memory!
+2017-09-24.22:19:00 -       INFO - Page in 0x180(index - 3) upload  from memory to swap
+2017-09-24.22:19:00 -       INFO - Page in 0x1d80(index - 3) load from swap to memory
+2017-09-24.22:19:00 -       INFO - Application (id: 4) requested page 0x180(index - 3)
+2017-09-24.22:19:00 -       INFO - Application`s (id: 4) page 0x180(index - 3) already in memory!
+2017-09-24.22:19:01 -       INFO - Application (id: 15) requested page 0x80(index - 1)
+2017-09-24.22:19:01 -       INFO - Application`s (id: 15) page 0x80(index - 1) not in memory!
+2017-09-24.22:19:01 -       INFO - Page in 0x200(index - 4) upload  from memory to swap
+2017-09-24.22:19:01 -       INFO - Page in 0x2380(index - 4) load from swap to memory
+2017-09-24.22:19:01 -       INFO - Application (id: 9) requested page 0x480(index - 9)
+2017-09-24.22:19:01 -       INFO - Application`s (id: 9) page 0x480(index - 9) not in memory!
+2017-09-24.22:19:01 -       INFO - Page in 0x280(index - 5) upload  from memory to swap
+2017-09-24.22:19:01 -       INFO - Page in 0xd00(index - 5) load from swap to memory
+2017-09-24.22:19:01 -       INFO - Application (id: 9) requested page 0x480(index - 9)
+2017-09-24.22:19:01 -       INFO - Application`s (id: 9) page 0x480(index - 9) not in memory!
+2017-09-24.22:19:01 -       INFO - Page in 0x300(index - 6) upload  from memory to swap
+2017-09-24.22:19:01 -       INFO - Page in 0xd00(index - 6) load from swap to memory
+2017-09-24.22:19:01 -       INFO - Application (id: 13) requested page 0x100(index - 2)
+2017-09-24.22:19:01 -       INFO - Application`s (id: 13) page 0x100(index - 2) not in memory!
+2017-09-24.22:19:01 -       INFO - Page in 0x380(index - 7) upload  from memory to swap
+2017-09-24.22:19:01 -       INFO - Page in 0x1b80(index - 7) load from swap to memory
+2017-09-24.22:19:02 -       INFO - Application (id: 15) requested page 0x80(index - 1)
+2017-09-24.22:19:02 -       INFO - Application`s (id: 15) page 0x80(index - 1) not in memory!
+2017-09-24.22:19:02 -       INFO - Page in 0x400(index - 8) upload  from memory to swap
+2017-09-24.22:19:02 -       INFO - Page in 0x2380(index - 8) load from swap to memory
+2017-09-24.22:19:02 -       INFO - Application (id: 2) requested page 0x0(index - 0)
+2017-09-24.22:19:02 -       INFO - Application`s (id: 2) page 0x0(index - 0) already in memory!
+2017-09-24.22:19:02 -       INFO - Application (id: 10) requested page 0x0(index - 0)
+2017-09-24.22:19:02 -       INFO - Application`s (id: 10) page 0x0(index - 0) not in memory!
+2017-09-24.22:19:02 -       INFO - Page in 0x480(index - 9) upload  from memory to swap
+2017-09-24.22:19:02 -       INFO - Page in 0x1400(index - 9) load from swap to memory
+2017-09-24.22:19:02 -       INFO - Application (id: 15) requested page 0x300(index - 6)
+2017-09-24.22:19:02 -       INFO - Application`s (id: 15) page 0x300(index - 6) not in memory!
+2017-09-24.22:19:02 -       INFO - Page in 0x500(index - a) upload  from memory to swap
+2017-09-24.22:19:02 -       INFO - Page in 0x2100(index - a) load from swap to memory
+2017-09-24.22:19:02 -       INFO - Application (id: 0) requested page 0x300(index - 6)
+2017-09-24.22:19:02 -       INFO - Application`s (id: 0) page 0x300(index - 6) not in memory!
+2017-09-24.22:19:02 -       INFO - Page in 0x580(index - b) upload  from memory to swap
+2017-09-24.22:19:02 -       INFO - Page in 0xd00(index - b) load from swap to memory
+2017-09-24.22:19:03 -       INFO - Application (id: 14) requested page 0x380(index - 7)
+2017-09-24.22:19:03 -       INFO - Application`s (id: 14) page 0x380(index - 7) not in memory!
+2017-09-24.22:19:03 -       INFO - Page in 0x600(index - c) upload  from memory to swap
+2017-09-24.22:19:03 -       INFO - Page in 0x1d00(index - c) load from swap to memory
+2017-09-24.22:19:03 -       INFO - Application (id: 8) requested page 0x100(index - 2)
+2017-09-24.22:19:03 -       INFO - Application`s (id: 8) page 0x100(index - 2) not in memory!
+2017-09-24.22:19:03 -       INFO - Page in 0x680(index - d) upload  from memory to swap
+2017-09-24.22:19:03 -       INFO - Page in 0xb80(index - d) load from swap to memory
+2017-09-24.22:19:03 -       INFO - Application (id: 7) requested page 0x300(index - 6)
+2017-09-24.22:19:03 -       INFO - Application`s (id: 7) page 0x300(index - 6) not in memory!
+2017-09-24.22:19:03 -       INFO - Page in 0x700(index - e) upload  from memory to swap
+2017-09-24.22:19:03 -       INFO - Page in 0x480(index - e) load from swap to memory
+2017-09-24.22:19:03 -       INFO - Application (id: 13) requested page 0x80(index - 1)
+2017-09-24.22:19:03 -       INFO - Application`s (id: 13) page 0x80(index - 1) not in memory!
+2017-09-24.22:19:03 -       INFO - Page in 0x780(index - f) upload  from memory to swap
+2017-09-24.22:19:03 -       INFO - Page in 0x1c00(index - f) load from swap to memory
+2017-09-24.22:19:03 -       INFO - Application (id: 12) requested page 0x400(index - 8)
+2017-09-24.22:19:03 -       INFO - Application`s (id: 12) page 0x400(index - 8) not in memory!
+2017-09-24.22:19:03 -       INFO - Page in 0x800(index - 10) upload  from memory to swap
+2017-09-24.22:19:03 -       INFO - Page in 0x1580(index - 10) load from swap to memory
+2017-09-24.22:19:03 -       INFO - Application (id: 1) requested page 0x80(index - 1)
+2017-09-24.22:19:03 -       INFO - Application`s (id: 1) page 0x80(index - 1) not in memory!
+2017-09-24.22:19:03 -       INFO - Page in 0x880(index - 11) upload  from memory to swap
+2017-09-24.22:19:03 -       INFO - Page in 0x2100(index - 11) load from swap to memory
+2017-09-24.22:19:04 -       INFO - Application (id: 6) requested page 0x80(index - 1)
+2017-09-24.22:19:04 -       INFO - Application`s (id: 6) page 0x80(index - 1) not in memory!
+2017-09-24.22:19:04 -       INFO - Page in 0x900(index - 12) upload  from memory to swap
+2017-09-24.22:19:04 -       INFO - Page in 0x200(index - 12) load from swap to memory
+2017-09-24.22:19:04 -       INFO - Application (id: 4) requested page 0x180(index - 3)
+2017-09-24.22:19:04 -       INFO - Application`s (id: 4) page 0x180(index - 3) already in memory!
+2017-09-24.22:19:04 -       INFO - Application (id: 15) requested page 0x300(index - 6)
+2017-09-24.22:19:04 -       INFO - Application`s (id: 15) page 0x300(index - 6) not in memory!
+2017-09-24.22:19:04 -       INFO - Page in 0x980(index - 13) upload  from memory to swap
+2017-09-24.22:19:04 -       INFO - Page in 0x2100(index - 13) load from swap to memory
+2017-09-24.22:19:04 -       INFO - Application (id: 5) requested page 0x0(index - 0)
+2017-09-24.22:19:04 -       INFO - Application`s (id: 5) page 0x0(index - 0) not in memory!
+2017-09-24.22:19:04 -       INFO - Page in 0xa00(index - 14) upload  from memory to swap
+2017-09-24.22:19:04 -       INFO - Page in 0x80(index - 14) load from swap to memory
+2017-09-24.22:19:04 -       INFO - Application (id: 2) requested page 0x180(index - 3)
+2017-09-24.22:19:04 -       INFO - Application`s (id: 2) page 0x180(index - 3) not in memory!
+2017-09-24.22:19:04 -       INFO - Page in 0xa80(index - 15) upload  from memory to swap
+2017-09-24.22:19:04 -       INFO - Page in 0x1580(index - 15) load from swap to memory
+2017-09-24.22:19:04 -       INFO - Application (id: 8) requested page 0x180(index - 3)
+2017-09-24.22:19:04 -       INFO - Application`s (id: 8) page 0x180(index - 3) not in memory!
+2017-09-24.22:19:04 -       INFO - Page in 0xb00(index - 16) upload  from memory to swap
+2017-09-24.22:19:04 -       INFO - Page in 0xb00(index - 16) load from swap to memory
+2017-09-24.22:19:05 -       INFO - Application (id: 0) requested page 0x380(index - 7)
+2017-09-24.22:19:05 -       INFO - Application`s (id: 0) page 0x380(index - 7) not in memory!
+2017-09-24.22:19:05 -       INFO - Page in 0xb80(index - 17) upload  from memory to swap
+2017-09-24.22:19:05 -       INFO - Page in 0xf80(index - 17) load from swap to memory
+2017-09-24.22:19:05 -       INFO - Application (id: 9) requested page 0x480(index - 9)
+2017-09-24.22:19:05 -       INFO - Application`s (id: 9) page 0x480(index - 9) not in memory!
+2017-09-24.22:19:05 -       INFO - Page in 0xc00(index - 18) upload  from memory to swap
+2017-09-24.22:19:05 -       INFO - Page in 0xd00(index - 18) load from swap to memory
+2017-09-24.22:19:05 -       INFO - Application (id: 5) requested page 0x0(index - 0)
+2017-09-24.22:19:05 -       INFO - Application`s (id: 5) page 0x0(index - 0) not in memory!
+2017-09-24.22:19:05 -       INFO - Page in 0xc80(index - 19) upload  from memory to swap
+2017-09-24.22:19:05 -       INFO - Page in 0x80(index - 19) load from swap to memory
+2017-09-24.22:19:05 -       INFO - Application (id: 0) requested page 0x380(index - 7)
+2017-09-24.22:19:05 -       INFO - Application`s (id: 0) page 0x380(index - 7) not in memory!
+2017-09-24.22:19:05 -       INFO - Page in 0xd00(index - 1a) upload  from memory to swap
+2017-09-24.22:19:05 -       INFO - Page in 0xf80(index - 1a) load from swap to memory
