@@ -69,6 +69,6 @@ VPFloat hungarian(const VVFloat &matrix) {
 	VPFloat result;
 	for (int j = 0; j < width; j++)
 		if (markIndices[j] != -1)
-			result.push_back(PFloat(markIndices[j], j));
+			result.push_back(PInt(markIndices[j], j));
 	return result;
 }

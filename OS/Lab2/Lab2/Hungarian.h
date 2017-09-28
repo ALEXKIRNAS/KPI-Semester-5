@@ -7,10 +7,10 @@
 #include <limits>
 using namespace std;
 
-typedef pair<float, float> PFloat;
+typedef pair<int, int> PInt;
 typedef vector<float> VFloat;
 typedef vector<VFloat> VVFloat;
-typedef vector<PFloat> VPFloat;
+typedef vector<PInt> VPFloat;
 
 const int inf = numeric_limits<int>::max();
 
