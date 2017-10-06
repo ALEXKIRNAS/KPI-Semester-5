@@ -4,7 +4,7 @@
 -- Task: Навчання з охорони праці
 
 
--- Version: 2 (Oct 04, 2017)
+-- Version: 0.8, build #3 (Oct 06, 2017)
 
 -----------------------------------------------------
 -- Subtask 0: Create database 
@@ -16,7 +16,7 @@ GO
 USE [Study]
 GO
 
--- Aditionaly_table_01
+-- Aditional_table_01
 CREATE TABLE [Listeners] (
     [ListenerId] INT IDENTITY(1,1) NOT NULL,
     [FirstName] NVARCHAR(255) NOT NULL,
@@ -438,3 +438,223 @@ FROM [rows_table] AS [T],
      [rows_table] AS [T2]
 WHERE [T2].[ROW_COUNT] = [T].[ROW_COUNT] + 1 
       AND [T2].[ListenerId] = [T].[ListenerId]
+
+
+-----------------------------------------------------
+-- Subtask 2: Normalization
+GO
+
+
+IF EXISTS(SELECT *
+          FROM   [dbo].[Tests])
+  DROP TABLE [dbo].[Tests]
+GO
+
+-- Bad table
+CREATE TABLE [Tests] (
+    [SubjectName] NVARCHAR(255) NOT NULL,
+    [ListenerName] NVARCHAR(255) NOT NULL,
+    [SubjectPrice] INT NOT NULL,
+    [SubjectDuration] INT NOT NULL,
+    [TeacherName] NVARCHAR(255) NOT NULL,
+    [TeacherPhoneNumber] NVARCHAR(255) NOT NULL,
+    [PassedDate] DATE NULL,
+    CONSTRAINT PK_Test PRIMARY KEY CLUSTERED ([SubjectName], [ListenerName]))
+
+INSERT INTO [dbo].[Tests] (
+            [SubjectName],
+            [ListenerName], 
+            [SubjectPrice], 
+            [SubjectDuration],
+            [TeacherName],
+            [TeacherPhoneNumber],
+            [PassedDate])
+VALUES ('Math', 'Alexander Zarichkovyi', 100, 4, 'Bodnarchyk Semen', '+380123456789,+380987654321', '2017-12-31'),
+       ('Physics', 'Alexander Zarichkovyi', 80, 8, 'QWERTY Semen', '+380123456789', '2017-12-29'),
+       ('C++', 'Alexander Zarichkovyi', 800, 3, 'Mykha Semen', '+380123456789', '2017-12-20'),
+       ('OOP', 'Alexander Zarichkovyi', 1000, 3, 'Kyd Jasper', '+380123456789', '2017-12-01'),
+       ('Math', 'Alexander Onbysh', 100, 4, 'Bodnarchyk Semen', '+380123456789,+380987654321', '2017-06-21'),
+       ('C++', 'Anna Khuda', 800, 3, 'Mykha Irina', '+380123456789', '2017-12-20'),
+       ('OOP', 'Nastya Starchnko', 1000, 3, 'Kyd Jasper', '+380123456789', '2017-12-01') 
+
+SELECT * FROM [dbo].[Tests] 
+GO
+
+
+-- 1 NF
+-- Зміни: Добавити поле для другого номеру викладача.
+IF EXISTS(SELECT *
+          FROM   [dbo].[Tests])
+  DROP TABLE [dbo].[Tests]
+GO
+
+CREATE TABLE [Tests] (
+    [SubjectName] NVARCHAR(255) NOT NULL,
+    [ListenerName] NVARCHAR(255) NOT NULL,
+    [SubjectPrice] INT NOT NULL,
+    [SubjectDuration] INT NOT NULL,
+    [TeacherName] NVARCHAR(255) NOT NULL,
+    [TeacherPhoneNumber_01] NVARCHAR(255) NOT NULL,
+    [TeacherPhoneNumber_02] NVARCHAR(255) NULL,
+    [PassedDate] DATE NULL,
+    CONSTRAINT PK_Test PRIMARY KEY CLUSTERED ([SubjectName], [ListenerName]))
+
+INSERT INTO [dbo].[Tests] (
+            [SubjectName],
+            [ListenerName], 
+            [SubjectPrice], 
+            [SubjectDuration],
+            [TeacherName],
+            [TeacherPhoneNumber_01],
+            [TeacherPhoneNumber_02],
+            [PassedDate])
+VALUES ('Math', 'Alexander Zarichkovyi', 100, 4, 'Bodnarchyk Semen', '+380123456789', '+380987654321', '2017-12-31'),
+       ('Physics', 'Alexander Zarichkovyi', 80, 8, 'QWERTY Semen', '+380123456789', NULL, '2017-12-29'),
+       ('C++', 'Alexander Zarichkovyi', 800, 3, 'Mykha Semen', '+380123456789', NULL, '2017-12-20'),
+       ('OOP', 'Alexander Zarichkovyi', 1000, 3, 'Kyd Jasper', '+380123456789', NULL, '2017-12-01'),
+       ('Math', 'Alexander Onbysh', 100, 4, 'Bodnarchyk Semen', '+380123456789', '+380987654321', '2017-06-21'),
+       ('C++', 'Anna Khuda', 800, 3, 'Mykha Irina', '+380123456789', NULL, '2017-12-20'),
+       ('OOP', 'Nastya Starchnko', 1000, 3, 'Kyd Jasper', '+380123456789', NULL, '2017-12-01') 
+
+SELECT * FROM [dbo].[Tests]
+GO 
+
+-- 2 NF
+-- Зміни: винести [SubjectName], [SubjectPrice], [SubjectDuration] в окрему сутність
+IF EXISTS(SELECT *
+          FROM   [dbo].[Tests])
+  DROP TABLE [dbo].[Tests]
+GO
+
+CREATE TABLE [SubjectDict] (
+    [ID] INT IDENTITY(1,1) NOT NULL, 
+    [SubjectName] NVARCHAR(255) NOT NULL,
+    [SubjectPrice] INT NOT NULL,
+    [SubjectDuration] INT NOT NULL,
+    CONSTRAINT PK_Test PRIMARY KEY CLUSTERED ([ID]))
+
+CREATE TABLE [Tests] (
+    [ListenerName] NVARCHAR(255) NOT NULL,
+    [SubjectDescript] INT NOT NULL FOREIGN KEY REFERENCES [SubjectDict]([ID]),
+    [TeacherName] NVARCHAR(255) NOT NULL,
+    [TeacherPhoneNumber_01] NVARCHAR(255) NOT NULL,
+    [TeacherPhoneNumber_02] NVARCHAR(255) NULL,
+    [PassedDate] DATE NULL,
+    CONSTRAINT PK_Test2 PRIMARY KEY CLUSTERED ([SubjectDescript], [ListenerName]))
+
+INSERT INTO [dbo].[SubjectDict] (
+            [SubjectName],
+            [SubjectPrice], 
+            [SubjectDuration])
+VALUES ('Math', 100, 4),
+       ('Physics', 80, 8),
+       ('C++',  800, 3),
+       ('OOP', 1000, 3)
+
+INSERT INTO [dbo].[Tests] (
+            [SubjectDescript],
+            [ListenerName], 
+            [TeacherName],
+            [TeacherPhoneNumber_01],
+            [TeacherPhoneNumber_02],
+            [PassedDate])
+VALUES (1, 'Alexander Zarichkovyi', 'Bodnarchyk Semen', '+380123456789', '+380987654321', '2017-12-31'),
+       (2, 'Alexander Zarichkovyi', 'QWERTY Semen', '+380123456789', NULL, '2017-12-29'),
+       (3, 'Alexander Zarichkovyi', 'Mykha Semen', '+380123456789', NULL, '2017-12-20'),
+       (4, 'Alexander Zarichkovyi', 'Kyd Jasper', '+380123456789', NULL, '2017-12-01'),
+       (1, 'Alexander Onbysh', 'Bodnarchyk Semen', '+380123456789', '+380987654321', '2017-06-21'),
+       (3, 'Anna Khuda', 'Mykha Irina', '+380123456789', NULL, '2017-12-20'),
+       (4, 'Nastya Starchnko', 'Kyd Jasper', '+380123456789', NULL, '2017-12-01') 
+
+SELECT * FROM [dbo].[Tests]
+GO 
+
+-- 3NF
+-- Зміни: Винести транзитивні залежності з номером телефону учителя в
+-- окрему сутність
+IF EXISTS(SELECT *
+          FROM   [dbo].[Tests])
+  DROP TABLE [dbo].[Tests]
+GO
+
+CREATE TABLE [TeachersPhones] (
+    [ID] INT IDENTITY(1,1) NOT NULL, 
+    [TeacherName] NVARCHAR(255) NOT NULL,
+    [TeacherPhoneNumber] NVARCHAR(255) NOT NULL,
+    CONSTRAINT PK_TeachersPhones PRIMARY KEY CLUSTERED ([ID]))
+
+CREATE TABLE [Tests] (
+    [ListenerName] NVARCHAR(255) NOT NULL,
+    [SubjectDescript] INT NOT NULL FOREIGN KEY REFERENCES [SubjectDict]([ID]),
+    [TeacherName] NVARCHAR(255) NOT NULL,
+    [PassedDate] DATE NULL,
+    CONSTRAINT PK_Test3 PRIMARY KEY CLUSTERED ([SubjectDescript], [ListenerName]))
+
+INSERT INTO [dbo].[TeachersPhones] (
+    [TeacherName],
+    [TeacherPhoneNumber]) 
+VALUES ('Bodnarchyk Semen', '+380123456789'),
+       ('Bodnarchyk Semen', '+380987654321'),
+       ('QWERTY Semen', '+380123456789'),
+       ('Mykha Semen', '+380123456789'),
+       ('Kyd Jasper', '+380123456789'),
+       ('Mykha Irina', '+380123456789')
+
+INSERT INTO [dbo].[Tests] (
+            [SubjectDescript],
+            [ListenerName], 
+            [TeacherName],
+            [PassedDate])
+VALUES (1, 'Alexander Zarichkovyi', 'Bodnarchyk Semen', '2017-12-31'),
+       (2, 'Alexander Zarichkovyi', 'QWERTY Semen', '2017-12-29'),
+       (3, 'Alexander Zarichkovyi', 'Mykha Semen', '2017-12-20'),
+       (4, 'Alexander Zarichkovyi', 'Kyd Jasper', '2017-12-01'),
+       (1, 'Alexander Onbysh', 'Bodnarchyk Semen', '2017-06-21'),
+       (3, 'Anna Khuda', 'Mykha Irina', '2017-12-20'),
+       (4, 'Nastya Starchnko', 'Kyd Jasper', '2017-12-01')
+
+SELECT * FROM [dbo].[Tests]
+GO 
+
+-- 3.5NF
+-- Зміни: Винести виклада в іншу сутність (залежність по даті та предмету)
+IF EXISTS(SELECT *
+          FROM   [dbo].[Tests])
+  DROP TABLE [dbo].[Tests]
+GO
+
+CREATE TABLE [Teachers](
+    [ID] INT IDENTITY(1,1) NOT NULL,
+    [SubjectDescript] INT NOT NULL FOREIGN KEY REFERENCES [SubjectDict]([ID]),
+    [TeacherName] NVARCHAR(255) NOT NULL
+)
+
+CREATE TABLE [Tests] (
+    [ListenerName] NVARCHAR(255) NOT NULL,
+    [SubjectDescript] INT NOT NULL FOREIGN KEY REFERENCES [SubjectDict]([ID]),
+    [PassedDate] DATE NULL,
+    CONSTRAINT PK_Test4 PRIMARY KEY CLUSTERED ([SubjectDescript], [ListenerName]))
+
+INSERT INTO [dbo].[Teachers] (
+    [TeacherName],
+    [SubjectDescript]) 
+VALUES ('Bodnarchyk Semen', 1),
+       ('QWERTY Semen', 2),
+       ('Mykha Semen', 3),
+       ('Kyd Jasper', 4),
+       ('Mykha Irina', 3)
+
+INSERT INTO [dbo].[Tests] (
+            [SubjectDescript],
+            [ListenerName], 
+            [PassedDate])
+VALUES (1, 'Alexander Zarichkovyi', '2017-12-31'),
+       (2, 'Alexander Zarichkovyi', '2017-12-29'),
+       (3, 'Alexander Zarichkovyi', '2017-12-20'),
+       (4, 'Alexander Zarichkovyi', '2017-12-01'),
+       (1, 'Alexander Onbysh', '2017-06-21'),
+       (3, 'Anna Khuda', '2017-12-20'),
+       (4, 'Nastya Starchnko', '2017-12-01')
+
+SELECT * FROM [dbo].[Tests]
+GO 
