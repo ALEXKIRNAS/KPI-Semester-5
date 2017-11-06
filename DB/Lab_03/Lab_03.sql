@@ -137,9 +137,14 @@ GO
 EXEC LISTNERS_LEVEL 1
 GO
 
--- Task 2.4.1: Змінити дані в доданій таблиці так, щоб утворився цикл.-- Написати запит, що видає помилку при зациклюванні. -- Див. запит в задачі 2.3INSERT INTO [dbo].[Curators] ([CuratorsId], [ListnerId])
+-- Task 2.4.1: Змінити дані в доданій таблиці так, щоб утворився цикл.
+-- Написати запит, що видає помилку при зациклюванні. 
+-- Див. запит в задачі 2.3
+INSERT INTO [dbo].[Curators] ([CuratorsId], [ListnerId])
 VALUES
-    (6, 1)EXEC LISTNERS_LEVEL 1
+    (6, 1)
+
+EXEC LISTNERS_LEVEL 1
 GO
 
 -- Task 2.4.2: Змінити цей запит так, щоб помилки не було
@@ -169,7 +174,9 @@ GO
 
 -- Task 2.5:  Для всіх «нащадків» (це перше поле: Іванов ) вивести список «предків»
 -- через «/», де останнім в ланцюгу є цей «нащадок» ( це друге поле:
--- Іваненко/Іванченко/Іванчук/Іванов)-- Вивести ієрахію слухач-кураторCREATE PROCEDURE LISTNER_LEVEL
+-- Іваненко/Іванченко/Іванчук/Іванов)
+-- Вивести ієрахію слухач-куратор
+CREATE PROCEDURE LISTNER_LEVEL
 AS 
    WITH sub(listener_id, lister_path, iscyrcle) AS 
    (SELECT [CuratorsId], CAST([CuratorsId] AS NVARCHAR(256)), 0
@@ -189,4 +196,4 @@ AS
 GO
 
 EXEC LISTNER_LEVEL
-GO
+GO
