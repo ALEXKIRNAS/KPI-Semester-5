@@ -99,3 +99,68 @@ db.TestShedule.aggregate([
     $unwind: "$Listener"
   }
 ])
+
+
+// ALT JOIN
+var mapData = function () {
+  var output= {
+    Id: this.ListenerId,
+    Subject: this.Subject,
+    FirstName: null,
+    LastName: null
+  };
+  
+  emit(this.ListnerId, output);
+};
+
+var mapListner = function () {
+  var output= {
+    Id: this.ListenerId,
+    FirstName: this.FirstName, 
+    LastName: this.LastName,
+    Subject: null
+  };
+  
+  emit(this.ListenerId, output);
+};
+
+var reduceF = function(key, values) {
+  var result = { 
+    Subject: [], 
+    FirstName: null,
+    LastName: null
+  };
+  
+  values.forEach(function(value) {
+    if(result.FirstName == null) {
+      result.FirstName = value.FirstName;
+    }
+    if(result.LastName == null) {
+      result.LastName = value.LastName;
+    }
+    if(value.Subject != null) {
+      result.Subject = result.Subject.concat([value.Subject]);
+    }
+  });
+  
+  return result;
+};
+
+result = db.Listeners.mapReduce(
+  mapListner, 
+  reduceF, 
+  {out: 
+    {reduce: 'joined_collection'}
+  }
+);
+
+result = db.TestShedule.mapReduce(
+  mapData, 
+  reduceF, 
+  {out: 
+    {reduce: 'joined_collection'}
+  }
+);
+
+db.joined_collection.find()
+
